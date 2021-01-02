@@ -13,6 +13,14 @@ provider "aws" {
 }
 
 resource "aws_instance" "example" {
-  ami           = "ami-0f2322bff98877761"
-  instance_type = "t2.micro"
+  ami           = var.ubuntu2004[var.region]
+  instance_type = var.instance_type
+}
+
+output "region" {
+  value = var.region
+}
+
+output "ami" {
+  value = aws_instance.example.ami
 }
